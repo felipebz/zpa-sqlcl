@@ -32,36 +32,7 @@
 			<groupId>oracle.dbtools</groupId>
 			<artifactId>dbtools-common</artifactId>
 			<version>[18.3,)</version>
-		</dependency>
-		<dependency>
-			<groupId>oracle.dbtools</groupId>
-			<artifactId>dbtools-sqlcl</artifactId>
-			<version>[18.3,)</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>[12.1,)</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>orai18n</artifactId>
-			<version>[12.1,)</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>orai18n-utility</artifactId>
-			<version>[12.1,)</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>xmlparserv2-sans-jaxp-services</artifactId>
-			<version>[12.1,)</version>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>xdb6</artifactId>
-			<version>[12.1,)</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
@@ -145,27 +116,24 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.1.1</version>
-				<executions>
-					<execution>
-						<id>copy</id>
-						<phase>install</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<excludeGroupIds>oracle.dbtools,com.oracle.jdbc</excludeGroupIds>
-					<outputDirectory>${sqlcl.home}/lib/ext</outputDirectory>
-					<overWriteReleases>false</overWriteReleases>
-					<overWriteSnapshots>false</overWriteSnapshots>
-					<overWriteIfNewer>true</overWriteIfNewer>
-				</configuration>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <shadedArtifactAttached>false</shadedArtifactAttached>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <minimizeJar>true</minimizeJar>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
