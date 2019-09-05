@@ -49,7 +49,7 @@ The configure script also creates a `sqlcl.properties` file which contains the p
 	sqlcl.version=19.2.1.0	
 	
 
-Then run `mvn install` to install this plugin into $SQLCL_HOME/lib/ext.
+Then run `mvn install` to install this plugin into your SQLcl home or run `mvn package` and manually copy `target/zpa-sqlcl-0.0.1-SNAPSHOT.jar` to $SQLCL_HOME/lib/ext .
 
 
 
