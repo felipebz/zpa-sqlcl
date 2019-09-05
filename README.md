@@ -38,7 +38,11 @@ Line 6: Remove or fix the duplicated value "'a'" in the IN condition.
 Line 7: Either merge this branch with the identical one on line 5 or change one of the implementations.
 ```
 
-## Setup
+## Installation
+
+Download the [latest .jar](https://github.com/felipebz/zpa-sqlcl/releases/latest) into the SQLCL_HOME/lib/ext and you're ready to go. :-)
+
+## Developing
 
 Run the `configure.sh` script included in this repository to install the SQLcl libraries to the local maven repository.
 
